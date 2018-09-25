@@ -7,8 +7,8 @@ package:
   version: {{ version }}
 
 source:
-  fn: v{{ version }}.tar.gz
   url: https://github.com/KhronosGroup/OpenCL-CLHPP/archive/v{{ version }}.tar.gz
+  fn: v{{ version }}.tar.gz
   md5: {{ md5 }}
   patches:
     # https://github.com/KhronosGroup/OpenCL-CLHPP/issues/41
@@ -38,7 +38,7 @@ test:
 about:
   home: https://github.com/KhronosGroup/OpenCL-CLHPP
   license: Khronos open source
-  license_file: LICENSE.txt
+  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE.txt'
   summary: C++ bindings for OpenCL Host API.
   description: |
     The interface is contained with a single C++ header file cl2.hpp and all

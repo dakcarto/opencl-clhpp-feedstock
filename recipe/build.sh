@@ -14,4 +14,5 @@ cmake \
 
 make
 make install
+# TODO: needs tests fixed
 # make test
