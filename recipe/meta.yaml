@@ -1,0 +1,57 @@
+{% set name = "opencl-clhpp" %}
+{% set version = "2.0.10" %}
+{% set md5 = "7ccdc2416bce676f9a4dcb3a8a4caeb7" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: v{{ version }}.tar.gz
+  url: https://github.com/KhronosGroup/OpenCL-CLHPP/archive/v{{ version }}.tar.gz
+  md5: {{ md5 }}
+  patches:
+    # https://github.com/KhronosGroup/OpenCL-CLHPP/issues/41
+    - 0001-install-to-include.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - cmake
+    - pkg-config  # [unix]
+    - python
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - pocl 1.1.*
+  run:
+    - pocl 1.1.*
+
+
+test:
+  commands:
+    - test -f ${PREFIX}/include/CL/cl.hpp  # [not win]
+    - test -f ${PREFIX}/include/CL/cl2.hpp  # [not win]
+
+about:
+  home: https://github.com/KhronosGroup/OpenCL-CLHPP
+  license: Khronos open source
+  license_file: LICENSE.txt
+  summary: C++ bindings for OpenCL Host API.
+  description: |
+    The interface is contained with a single C++ header file cl2.hpp and all
+    definitions are contained within the namespace cl. There is no
+    additional requirement to include cl.h and to use either the C++ or
+    original C bindings; it is enough to simply include cl2.hpp.
+
+    The bindings themselves are lightweight and correspond closely to the
+    underlying C API. Using the C++ bindings introduces no additional
+    execution overhead.
+  doc_url: http://github.khronos.org/OpenCL-CLHPP/
+  dev_url: https://github.com/KhronosGroup/OpenCL-CLHPP.git
+
+extra:
+  recipe-maintainers:
+    - dakcarto
