@@ -25,9 +25,9 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
-    - pocl 1.1.*
+    - pocl
   run:
-    - pocl 1.1.*
+    - pocl
 
 
 test:
