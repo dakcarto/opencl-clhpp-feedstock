@@ -15,7 +15,7 @@ source:
     - 0001-install-to-include.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -24,11 +24,6 @@ requirements:
     - python
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-  host:
-    - pocl
-  run:
-    - pocl
-
 
 test:
   commands:
